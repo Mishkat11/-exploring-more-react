@@ -2,6 +2,7 @@
 // import PropTypes from 'prop-types';
 
 // import { data } from "autoprefixer";
+import Swal from 'sweetalert2';
 import Cart from '../Cart/Cart';
 import Main from '../main/main';
 import './card.css'
@@ -19,7 +20,12 @@ const handleClick=actor=>{
    const isExist = cart.find(item =>item.id === actor.id)
    let count = actor.salary
    if(isExist){
-    return alert('already booked')
+    return Swal.fire({
+        icon: 'error',
+      
+        text: 'You have already Chosen',
+       
+      })
    }else{
     
     cart.forEach(item=> {
@@ -27,7 +33,12 @@ const handleClick=actor=>{
     })
     const remainingSalary = 30000 - count
 if(count>30000){
-    return alert('Over Budget')
+    return Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You are over Budget!',
+      
+      })
 }
 
     setCost(count)
